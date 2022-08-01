@@ -96,6 +96,10 @@ class _LoginPageState extends State<LoginPage> {
             borderRadius: BorderRadius.circular(15),
           ),
           errorStyle: const TextStyle(color: Colors.redAccent, fontSize: 15),
+          border: OutlineInputBorder(
+            borderSide: const BorderSide(width: 2, color: Colors.green),
+            borderRadius: BorderRadius.circular(30),
+          ),
         ),
         controller: emailController,
         validator: (value) {
@@ -125,6 +129,10 @@ class _LoginPageState extends State<LoginPage> {
           focusedBorder: OutlineInputBorder(
             borderSide: const BorderSide(width: 2, color: Colors.green),
             borderRadius: BorderRadius.circular(15),
+          ),
+          border: OutlineInputBorder(
+            borderSide: const BorderSide(width: 2, color: Colors.green),
+            borderRadius: BorderRadius.circular(30),
           ),
           errorStyle: const TextStyle(color: Colors.redAccent, fontSize: 15),
         ),
@@ -170,7 +178,7 @@ class _LoginPageState extends State<LoginPage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => const ForgotPassword(),
+                  builder: (context) => ForgotPassword(),
                 ),
               )
             },

@@ -3,9 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:password_manager_app/phase%202/pages/signup.dart';
-
 import 'homepage.dart';
-import 'login.dart';
 
 class AuthService {
   //Determine if the user is authenticated.

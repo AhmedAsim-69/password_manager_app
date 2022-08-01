@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class MainPage extends StatefulWidget {
-  const MainPage({Key? key, required String title}) : super(key: key);
+class GeneratePass extends StatefulWidget {
+  const GeneratePass({Key? key, required String title}) : super(key: key);
 
   @override
-  State<MainPage> createState() => _MainPageState();
+  State<GeneratePass> createState() => _GeneratePassState();
 }
 
-class _MainPageState extends State<MainPage> {
+class _GeneratePassState extends State<GeneratePass> {
   bool spclch = true;
   bool numbers = true;
   bool upper = true;

@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:password_manager_app/phase 2/pages/login.dart';
 // import 'package:firebase_auth/firebase_auth.dart';
 
-void main() {
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 

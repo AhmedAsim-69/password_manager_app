@@ -74,6 +74,20 @@ class _SignupState extends State<Signup> {
             child: ListView(
               shrinkWrap: true,
               children: [
+                Text(
+                  'Create an account',
+                  style: GoogleFonts.lato(
+                    textStyle: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.green,
+                    ),
+                  ),
+                  textAlign: TextAlign.center,
+                  textScaleFactor: 2,
+                ),
+                const SizedBox(
+                  height: 70,
+                ),
                 buildName(),
                 buildEmail(),
                 buildPass(),

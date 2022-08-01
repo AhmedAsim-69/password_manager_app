@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:password_manager_app/phase 2/pages/signup.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
+import 'package:password_manager_app/phase%202/pages/auth_service.dart';
+import 'package:password_manager_app/phase%202/pages/homepage.dart';
 import 'forgot_pass.dart';
+import 'auth_service.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key, required String title}) : super(key: key);
@@ -150,6 +153,12 @@ class _LoginPageState extends State<LoginPage> {
                   password = passwordController.text;
                 });
               }
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const Homepage(),
+                ),
+              );
             },
             child: const Text(
               'Login',
@@ -207,7 +216,31 @@ class _LoginPageState extends State<LoginPage> {
   Widget buildGoogleLogin() {
     return SignInButton(
       Buttons.Google,
-      onPressed: () {},
+      onPressed: () {
+        AuthService().signInWithGoogle();
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: Colors.green,
+            content: Text(
+              "Logged in successfully",
+              style: GoogleFonts.lato(
+                textStyle: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+              textAlign: TextAlign.center,
+              textScaleFactor: 1,
+            ),
+          ),
+        );
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => AuthService().handleAuthState(),
+          ),
+        );
+      },
     );
   }
 }

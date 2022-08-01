@@ -10,6 +10,11 @@ class Homepage extends StatefulWidget {
 class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
-    return const Text("Homepage");
+    return const Center(
+      child: Text(
+        'Dashboard',
+        style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+      ),
+    );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:password_manager_app/phase 2/pages/signup.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'forgot_pass.dart';
 
 class LoginPage extends StatefulWidget {
@@ -29,6 +30,8 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
+      resizeToAvoidBottomInset: true,
       body: Center(
         child: Form(
           key: _formKey,
@@ -37,10 +40,35 @@ class _LoginPageState extends State<LoginPage> {
             child: ListView(
               shrinkWrap: true,
               children: [
+                Text(
+                  'Login to Password Manager',
+                  style: GoogleFonts.lato(
+                    textStyle: const TextStyle(
+                      // fontSize: 28,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.green,
+                    ),
+                  ),
+                  textAlign: TextAlign.center,
+                  textScaleFactor: 2,
+                ),
+                const SizedBox(
+                  height: 70,
+                ),
                 buildEmail(),
                 buildPass(),
+                const SizedBox(
+                  height: 10,
+                ),
                 buildLoginButton(),
+                const SizedBox(
+                  height: 10,
+                ),
                 buildSignupButton(),
+                const SizedBox(
+                  height: 50,
+                ),
+                buildGoogleLogin(),
               ],
             ),
           ),
@@ -51,15 +79,21 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget buildEmail() {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10.0),
+      margin: const EdgeInsets.symmetric(vertical: 5),
       child: TextFormField(
         autofocus: false,
-        decoration: const InputDecoration(
+        decoration: InputDecoration(
           labelText: 'Email: ',
-          labelStyle: TextStyle(fontSize: 20.0),
-          contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
-          border: OutlineInputBorder(),
-          errorStyle: TextStyle(color: Colors.redAccent, fontSize: 15),
+          labelStyle: const TextStyle(fontSize: 18, color: Colors.green),
+          enabledBorder: OutlineInputBorder(
+            borderSide: const BorderSide(width: 2, color: Colors.green),
+            borderRadius: BorderRadius.circular(30),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: const BorderSide(width: 2, color: Colors.green),
+            borderRadius: BorderRadius.circular(15),
+          ),
+          errorStyle: const TextStyle(color: Colors.redAccent, fontSize: 15),
         ),
         controller: emailController,
         validator: (value) {
@@ -76,16 +110,21 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget buildPass() {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 10.0),
+      margin: const EdgeInsets.symmetric(vertical: 5),
       child: TextFormField(
         autofocus: false,
-        obscureText: true,
-        decoration: const InputDecoration(
+        decoration: InputDecoration(
           labelText: 'Password: ',
-          labelStyle: TextStyle(fontSize: 20.0),
-          contentPadding: EdgeInsets.symmetric(vertical: 15, horizontal: 15),
-          border: OutlineInputBorder(),
-          errorStyle: TextStyle(color: Colors.redAccent, fontSize: 15),
+          labelStyle: const TextStyle(fontSize: 18, color: Colors.green),
+          enabledBorder: OutlineInputBorder(
+            borderSide: const BorderSide(width: 2, color: Colors.green),
+            borderRadius: BorderRadius.circular(30),
+          ),
+          focusedBorder: OutlineInputBorder(
+            borderSide: const BorderSide(width: 2, color: Colors.green),
+            borderRadius: BorderRadius.circular(15),
+          ),
+          errorStyle: const TextStyle(color: Colors.redAccent, fontSize: 15),
         ),
         controller: passwordController,
         validator: (value) {
@@ -123,7 +162,7 @@ class _LoginPageState extends State<LoginPage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ForgotPassword(),
+                  builder: (context) => const ForgotPassword(),
                 ),
               )
             },
@@ -154,7 +193,7 @@ class _LoginPageState extends State<LoginPage> {
             Navigator.pushAndRemoveUntil(
               context,
               PageRouteBuilder(
-                pageBuilder: (context, a, b) => Signup(),
+                pageBuilder: (context, a, b) => const Signup(),
                 transitionDuration: const Duration(seconds: 0),
               ),
               (route) => false,
@@ -163,6 +202,13 @@ class _LoginPageState extends State<LoginPage> {
           child: const Text('Signup'),
         ),
       ],
+    );
+  }
+
+  Widget buildGoogleLogin() {
+    return SignInButton(
+      Buttons.Google,
+      onPressed: () {},
     );
   }
 }

@@ -22,8 +22,7 @@ class _SignupState extends State<Signup> {
   var email = "";
   var password = "";
   var confirmPassword = "";
-  // Create a text controller and use it to retrieve the current value
-  // of the TextField.
+
   final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
@@ -31,7 +30,6 @@ class _SignupState extends State<Signup> {
 
   @override
   void dispose() {
-    // Clean up the controller when the widget is disposed.
     nameController.dispose();
     emailController.dispose();
     passwordController.dispose();
@@ -192,12 +190,10 @@ class _SignupState extends State<Signup> {
           errorStyle: const TextStyle(color: Colors.redAccent, fontSize: 14),
           suffixIcon: IconButton(
               icon: Icon(
-                // Based on passwordVisible state choose the icon
                 !_obscureText1 ? Icons.visibility : Icons.visibility_off,
                 color: Theme.of(context).primaryColorDark,
               ),
               onPressed: () {
-                // Update the state i.e. toogle the state of passwordVisible variable
                 setState(() {
                   _obscureText1 = !_obscureText1;
                 });
@@ -240,12 +236,10 @@ class _SignupState extends State<Signup> {
           errorStyle: const TextStyle(color: Colors.redAccent, fontSize: 14),
           suffixIcon: IconButton(
               icon: Icon(
-                // Based on passwordVisible state choose the icon
                 !_obscureText2 ? Icons.visibility : Icons.visibility_off,
                 color: Theme.of(context).primaryColorDark,
               ),
               onPressed: () {
-                // Update the state i.e. toogle the state of passwordVisible variable
                 setState(() {
                   _obscureText2 = !_obscureText2;
                 });

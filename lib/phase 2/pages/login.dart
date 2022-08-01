@@ -44,7 +44,6 @@ class _LoginPageState extends State<LoginPage> {
                   'Login to Password Manager',
                   style: GoogleFonts.lato(
                     textStyle: const TextStyle(
-                      // fontSize: 28,
                       fontWeight: FontWeight.bold,
                       color: Colors.green,
                     ),

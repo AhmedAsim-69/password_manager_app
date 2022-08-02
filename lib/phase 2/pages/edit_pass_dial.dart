@@ -124,22 +124,18 @@ class _NewEditPassDialState extends State<NewEditPassDial> {
             final docUser = FirebaseFirestore.instance
                 .collection(FirebaseAuth.instance.currentUser!.email!)
                 .doc();
+            // final users = snapshot.data!
 
             docUser.update(
               {
-                'appName': 'Faceboooook',
+                'appName': namectrl.text,
+                'email': emailctrl.text,
+                'password': passctrl.text,
               },
             );
-            // final user = User(
-            //     appName: namectrl.text,
-            //     email: emailctrl.text,
-            //     password: passctrl.text);
-
-            // updatePassToFirestore(user);
-            // Navigator.pop(context, true);
-            // namectrl.clear();
-            // emailctrl.clear();
-            // passctrl.clear();
+            namectrl.clear();
+            emailctrl.clear();
+            passctrl.clear();
           },
           child: Text(
             'Save Updated Password',
@@ -154,10 +150,6 @@ class _NewEditPassDialState extends State<NewEditPassDial> {
           ),
         ),
       );
-
-  Future updatePassToFirestore(User user) async {
-    // return await
-  }
 
   String generatePassword(final length) {
     const lowercase = 'abcdefghijklmnopqrstuvwxyz';
@@ -314,6 +306,17 @@ class User {
         'email': email,
         'password': password,
       };
+  // Stream<List<User>> readusers() => FirebaseFirestore.instance
+  //     .collection(FirebaseAuth.instance.currentUser!.email!)
+  //     .snapshots()
+  //     .map((snapshot) =>
+  //         snapshot.docs.map((doc) => User.fromuserdata(doc.data())).toList());
+
+  Stream<List<User>> readUsers() => FirebaseFirestore.instance
+      .collection(FirebaseAuth.instance.currentUser!.email!)
+      .snapshots()
+      .map((snapshot) =>
+          snapshot.docs.map((doc) => User.fromJson(doc.data())).toList());
 
   static User fromJson(Map<String, dynamic> json) => User(
         id: json['id'],

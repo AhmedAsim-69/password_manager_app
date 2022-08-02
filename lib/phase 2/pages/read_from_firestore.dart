@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:password_manager_app/phase%202/pages/edit_pass.dart';
 
 class ReadFromFirestore extends StatefulWidget {
   const ReadFromFirestore({Key? key}) : super(key: key);
@@ -13,6 +14,10 @@ class ReadFromFirestore extends StatefulWidget {
 
 class _ReadFromFirestoreState extends State<ReadFromFirestore> {
   final user = FirebaseAuth.instance.currentUser;
+  final _formKey = GlobalKey<FormState>();
+  String appname = '';
+  String email = '';
+  String pass = '';
   @override
   Widget build(BuildContext context) => Scaffold(
         // appBar: AppBar(
@@ -155,12 +160,18 @@ class _ReadFromFirestoreState extends State<ReadFromFirestore> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-// Press this button to edit a single product
-              IconButton(icon: const Icon(Icons.edit), onPressed: () {}),
+              IconButton(
+                  icon: const Icon(Icons.edit),
+                  onPressed: () {
+                    final userid = user.id;
+                    showDialog(
+                      context: context,
+                      builder: (ctx) => EditPass(userid: user.id),
+                    );
+                  }),
               const SizedBox(
                 width: 200,
               ),
-              // => _update(documentSnapshot)),
               IconButton(
                   icon: const Icon(Icons.delete),
                   onPressed: () {

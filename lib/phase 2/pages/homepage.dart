@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:password_manager_app/phase%202/pages/add_pass.dart';
 import 'package:password_manager_app/phase%202/pages/login.dart';
 import 'package:password_manager_app/phase%202/pages/password_generator.dart';
 
@@ -74,7 +75,11 @@ class _HomepageState extends State<Homepage> {
         ),
         backgroundColor: Colors.lightGreen,
         foregroundColor: Colors.white,
-        onPressed: () {},
+        onPressed: () => showDialog(
+          context: context,
+          builder: (context) => const AddPass(),
+          barrierDismissible: false,
+        ),
         child: const Icon(Icons.add),
       ),
     );

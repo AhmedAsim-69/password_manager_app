@@ -6,7 +6,7 @@ import 'package:password_manager_app/phase%202/pages/login.dart';
 import 'signup.dart';
 
 class ForgotPassword extends StatefulWidget {
-  ForgotPassword({Key? key}) : super(key: key);
+  const ForgotPassword({Key? key}) : super(key: key);
 
   @override
   _ForgotPasswordState createState() => _ForgotPasswordState();

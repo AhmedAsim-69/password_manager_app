@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:password_manager_app/phase 2/pages/signup.dart';
@@ -19,6 +20,44 @@ class _LoginPageState extends State<LoginPage> {
 
   var email = "";
   var password = "";
+  userLogin() async {
+    try {
+      await FirebaseAuth.instance
+          .signInWithEmailAndPassword(email: email, password: password);
+      if (mounted) {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+            builder: (context) => Homepage(),
+          ),
+        );
+      }
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        // print("No User Found for that Email");
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            backgroundColor: Colors.orangeAccent,
+            content: Text(
+              "No User Found for that Email",
+              style: TextStyle(fontSize: 18.0, color: Colors.black),
+            ),
+          ),
+        );
+      } else if (e.code == 'wrong-password') {
+        print("Wrong Password Provided by User");
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            backgroundColor: Colors.orangeAccent,
+            content: Text(
+              "Wrong Password Provided by User",
+              style: TextStyle(fontSize: 18.0, color: Colors.black),
+            ),
+          ),
+        );
+      }
+    }
+  }
 
   @override
   void dispose() {
@@ -160,13 +199,14 @@ class _LoginPageState extends State<LoginPage> {
                   email = emailController.text;
                   password = passwordController.text;
                 });
+                userLogin();
               }
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const Homepage(),
-                ),
-              );
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(
+              //     builder: (context) => const Homepage(),
+              //   ),
+              // );
             },
             child: const Text(
               'Login',

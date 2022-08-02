@@ -28,13 +28,12 @@ class _LoginPageState extends State<LoginPage> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => Homepage(),
+            builder: (context) => Homepage(email),
           ),
         );
       }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        // print("No User Found for that Email");
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             backgroundColor: Colors.orangeAccent,
@@ -218,7 +217,7 @@ class _LoginPageState extends State<LoginPage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (context) => ForgotPassword(),
+                  builder: (context) => const ForgotPassword(),
                 ),
               )
             },
@@ -266,22 +265,6 @@ class _LoginPageState extends State<LoginPage> {
       Buttons.Google,
       onPressed: () {
         AuthService().signInWithGoogle();
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            backgroundColor: Colors.green,
-            content: Text(
-              "Logged in successfully",
-              style: GoogleFonts.lato(
-                textStyle: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
-              ),
-              textAlign: TextAlign.center,
-              textScaleFactor: 1,
-            ),
-          ),
-        );
         Navigator.push(
           context,
           MaterialPageRoute(

@@ -5,6 +5,8 @@ import 'package:google_fonts/google_fonts.dart';
 // import 'package:password_manager_app/phase%201/main.dart';
 import 'package:password_manager_app/phase%202/pages/login.dart';
 
+import 'auth_service.dart';
+
 class Signup extends StatefulWidget {
   const Signup({Key? key}) : super(key: key);
 
@@ -321,7 +323,31 @@ class _SignupState extends State<Signup> {
   Widget buildGoogleButton() {
     return SignInButton(
       Buttons.Google,
-      onPressed: () {},
+      onPressed: () {
+        AuthService().signInWithGoogle();
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            backgroundColor: Colors.green,
+            content: Text(
+              "Logged in successfully",
+              style: GoogleFonts.lato(
+                textStyle: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+              textAlign: TextAlign.center,
+              textScaleFactor: 1,
+            ),
+          ),
+        );
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => AuthService().handleAuthState(),
+          ),
+        );
+      },
     );
   }
 

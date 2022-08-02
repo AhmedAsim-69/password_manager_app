@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ReadFromFirestore extends StatefulWidget {
@@ -13,6 +14,13 @@ class ReadFromFirestore extends StatefulWidget {
 
 class _ReadFromFirestoreState extends State<ReadFromFirestore> {
   final user = FirebaseAuth.instance.currentUser;
+  TextEditingController _searchController = TextEditingController();
+//TODO Make sure to provide your own Collection instead of 'all_Notes'
+  CollectionReference allNoteCollection =
+      FirebaseFirestore.instance.collection('users123');
+  List<DocumentSnapshot> documents = [];
+
+  String searchText = '';
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
@@ -42,35 +50,110 @@ class _ReadFromFirestoreState extends State<ReadFromFirestore> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Divider(color: Colors.black),
-            Text(
-              'App Name: ${user.appName}',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                color: Theme.of(context).primaryColor,
-                fontSize: 22,
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: 4),
-              child: Text(
-                'Email: ${user.email}',
-                style: const TextStyle(
-                  fontSize: 14,
-                  height: 1.5,
-                  fontStyle: FontStyle.italic,
+            Row(
+              children: [
+                Text(
+                  'App Name: ${user.appName}',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).primaryColor,
+                    fontSize: 22,
+                  ),
                 ),
-              ),
-            ),
-            Container(
-              margin: const EdgeInsets.only(top: 4),
-              child: Text(
-                'Password: ${user.password}',
-                style: const TextStyle(
-                  fontSize: 14,
-                  height: 1.5,
-                  fontStyle: FontStyle.italic,
+                const Spacer(),
+                IconButton(
+                  icon: const Icon(Icons.copy),
+                  onPressed: () {
+                    final copypassword = ClipboardData(text: user.appName);
+                    Clipboard.setData(copypassword);
+
+                    SnackBar snackBar = SnackBar(
+                      content: Text(
+                        'App Name copied to clipboard',
+                        style: GoogleFonts.lato(
+                          textStyle: const TextStyle(
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                      backgroundColor: Colors.green,
+                    );
+                    ScaffoldMessenger.of(context)
+                      ..removeCurrentSnackBar()
+                      ..showSnackBar(snackBar);
+                  },
                 ),
-              ),
+              ],
+            ),
+            Row(
+              children: [
+                Text(
+                  'Email: ${user.email}',
+                  style: const TextStyle(
+                    fontSize: 14,
+                    height: 1.5,
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+                const Spacer(),
+                IconButton(
+                  icon: const Icon(Icons.copy),
+                  onPressed: () {
+                    final copypassword = ClipboardData(text: user.email);
+                    Clipboard.setData(copypassword);
+
+                    SnackBar snackBar = SnackBar(
+                      content: Text(
+                        'Email copied to clipboard',
+                        style: GoogleFonts.lato(
+                          textStyle: const TextStyle(
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                      backgroundColor: Colors.green,
+                    );
+                    ScaffoldMessenger.of(context)
+                      ..removeCurrentSnackBar()
+                      ..showSnackBar(snackBar);
+                  },
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                Text(
+                  'Password: ${user.password}',
+                  style: const TextStyle(
+                    fontSize: 14,
+                    height: 1.5,
+                    fontStyle: FontStyle.italic,
+                  ),
+                ),
+                const Spacer(),
+                IconButton(
+                  icon: const Icon(Icons.copy),
+                  onPressed: () {
+                    final copypassword = ClipboardData(text: user.password);
+                    Clipboard.setData(copypassword);
+
+                    SnackBar snackBar = SnackBar(
+                      content: Text(
+                        'Password copied to clipboard',
+                        style: GoogleFonts.lato(
+                          textStyle: const TextStyle(
+                            fontSize: 16,
+                          ),
+                        ),
+                      ),
+                      backgroundColor: Colors.green,
+                    );
+                    ScaffoldMessenger.of(context)
+                      ..removeCurrentSnackBar()
+                      ..showSnackBar(snackBar);
+                  },
+                ),
+              ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -82,69 +165,75 @@ class _ReadFromFirestoreState extends State<ReadFromFirestore> {
                   width: 200,
                 ),
                 // => _update(documentSnapshot)),
-// This icon button is used to delete a single product
-                IconButton(icon: const Icon(Icons.delete), onPressed: () {}),
-                //  => _deleteProduct(documentSnapshot.id)),
+                IconButton(
+                    icon: const Icon(Icons.delete),
+                    onPressed: () {
+                      showDialog(
+                        context: context,
+                        builder: (ctx) => AlertDialog(
+                          title: const Text("Delete Password!"),
+                          content: const Text(
+                              "Are you sure you want to delete this Password?"),
+                          actions: <Widget>[
+                            TextButton(
+                              onPressed: () {
+                                final docUser = FirebaseFirestore.instance
+                                    .collection('users123')
+                                    .doc(user.id);
+
+                                docUser.delete();
+                                Navigator.pop(context, true);
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.all(14),
+                                child: const Text(
+                                  "Delete",
+                                  style: TextStyle(color: Colors.red),
+                                ),
+                              ),
+                            ),
+                            TextButton(
+                              onPressed: () {
+                                Navigator.pop(context, true);
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.all(14),
+                                child: const Text(
+                                  "Cancel",
+                                  style: TextStyle(color: Colors.green),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    }),
               ],
             ),
             const Divider(color: Colors.black)
           ],
         ),
       );
-  // Container(
-  //       // padding: const EdgeInsets.all(32),
-  //       child: Column(
-  //         crossAxisAlignment: CrossAxisAlignment.start,
-  //         // mainAxisAlignment: MainAxisAlignment.start,
-  //         children: [
-  //           Text(
-  //             'App Name: ${user.appName}',
-  //             style: GoogleFonts.lato(
-  //               textStyle: const TextStyle(
-  //                 fontSize: 14,
-  //                 fontWeight: FontWeight.bold,
-  //               ),
-  //             ),
-  //           ),
-  //           Text(
-  //             'App Name: ${user.appName}',
-  //             style: GoogleFonts.lato(
-  //               textStyle: const TextStyle(
-  //                 fontSize: 14,
-  //                 fontWeight: FontWeight.bold,
-  //               ),
-  //             ),
-  //           ),
-  //           Text(
-  //             'App Name: ${user.appName}',
-  //             style: GoogleFonts.lato(
-  //               textStyle: const TextStyle(
-  //                 fontSize: 14,
-  //                 fontWeight: FontWeight.bold,
-  //               ),
-  //             ),
-  //           ),
-  //         ],
-  //       ),
-  //     );
+
   Stream<List<User>> readUsers() => FirebaseFirestore.instance
       .collection('users123')
       .snapshots()
       .map((snapshot) =>
           snapshot.docs.map((doc) => User.fromJson(doc.data())).toList());
 
-  // tempfun() {
-  //   var name;
-  //   FirebaseFirestore.instance
-  //       .collection("Users")
-  //       .doc(user!.uid)
-  //       .get()
-  //       .then((value) {
-  //     setState(() {
-  //       name = value.get('userName');
-  //     });
-  //   });
-  // }
+  final editingController = TextEditingController();
+
+  Widget buildSearch() {
+    return TextField(
+      controller: editingController,
+      decoration: const InputDecoration(
+          labelText: "Search",
+          hintText: "Search",
+          prefixIcon: Icon(Icons.search),
+          border: OutlineInputBorder(
+              borderRadius: BorderRadius.all(Radius.circular(25.0)))),
+    );
+  }
 }
 
 class User {

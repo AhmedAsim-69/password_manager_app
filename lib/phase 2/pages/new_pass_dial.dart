@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:password_manager_app/phase%202/pages/password_generator.dart';
 
 final namectrl = TextEditingController();
 final emailctrl = TextEditingController();
@@ -32,7 +33,12 @@ class _NewPassaDialState extends State<NewPassaDial> {
             const SizedBox(height: 16),
             buildPass(),
             const SizedBox(height: 16),
-            buildButton(),
+            Column(
+              children: [
+                buildGenPass(passctrl),
+                buildButton(),
+              ],
+            ),
           ],
         ),
       );
@@ -69,7 +75,31 @@ class _NewPassaDialState extends State<NewPassaDial> {
           labelText: 'Enter Password',
         ),
       );
-
+  Widget buildGenPass(TextEditingController ctrl) => SizedBox(
+        width: double.infinity,
+        child: ElevatedButton(
+          style: ButtonStyle(
+            backgroundColor: MaterialStateProperty.all(Colors.black),
+            foregroundColor: MaterialStateProperty.all(Colors.white),
+          ),
+          onPressed: () {
+            const GeneratePass(
+              title: 'title',
+            );
+          },
+          child: Text(
+            'Generate Password',
+            style: GoogleFonts.lato(
+              textStyle: const TextStyle(
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+            textAlign: TextAlign.center,
+            textScaleFactor: 1,
+          ),
+        ),
+      );
   Widget buildButton() => SizedBox(
         width: double.infinity,
         child: ElevatedButton(
@@ -84,6 +114,10 @@ class _NewPassaDialState extends State<NewPassaDial> {
                 password: passctrl.text);
 
             savePassToFirestore(user);
+            Navigator.pop(context, true);
+            namectrl.clear();
+            emailctrl.clear();
+            passctrl.clear();
           },
           child: Text(
             'Save Password',
@@ -122,9 +156,9 @@ class _NewPassaDialState extends State<NewPassaDial> {
 
 class User {
   String id;
-  final String appName;
-  final String email;
-  final String password;
+  String appName = '';
+  String email = '';
+  String password = '';
 
   User({
     this.id = '',

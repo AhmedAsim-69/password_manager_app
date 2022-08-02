@@ -1,5 +1,4 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
@@ -27,14 +26,19 @@ class _ReadFromFirestoreState extends State<ReadFromFirestore> {
             }
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const Text('Waiting');
-            } else if (snapshot.hasData) {
-              final users = snapshot.data!;
-              return ListView(children: users.map(buildUser).toList());
+            }
+            if (snapshot.connectionState == ConnectionState.active ||
+                snapshot.connectionState == ConnectionState.done) {
+              if (snapshot.hasData) {
+                final users = snapshot.data!;
+                return ListView(children: users.map(buildUser).toList());
+              }
             } else {
               return const Center(
                 child: CircularProgressIndicator(),
               );
             }
+            return const Text("Working to get data");
           },
         ),
       );

@@ -37,7 +37,7 @@ class _HomepageState extends State<Homepage> {
             const Text("Welcome User"),
             ElevatedButton(
               onPressed: () async => {
-                await FirebaseAuth.instance.signOut(),
+                // await FirebaseAuth.instance.signOut(),
                 await signOut123(),
                 Navigator.pushAndRemoveUntil(
                     context,
@@ -72,36 +72,18 @@ class _HomepageState extends State<Homepage> {
         selectedItemColor: Colors.white,
         onTap: _onItemTapped,
       ),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: [
-          FloatingActionButton(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
-            ),
-            backgroundColor: Colors.lightBlue,
-            foregroundColor: Colors.white,
-            onPressed: () => showDialog(
-              context: context,
-              builder: (context) => buildSearch(),
-              barrierDismissible: false,
-            ),
-            child: const Icon(Icons.search),
-          ),
-          FloatingActionButton(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(20),
-            ),
-            backgroundColor: Colors.lightGreen,
-            foregroundColor: Colors.white,
-            onPressed: () => showDialog(
-              context: context,
-              builder: (context) => const AddPass(),
-              barrierDismissible: false,
-            ),
-            child: const Icon(Icons.add),
-          ),
-        ],
+      floatingActionButton: FloatingActionButton(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
+        backgroundColor: Colors.lightGreen,
+        foregroundColor: Colors.white,
+        onPressed: () => showDialog(
+          context: context,
+          builder: (context) => const AddPass(),
+          barrierDismissible: false,
+        ),
+        child: const Icon(Icons.add),
       ),
     );
   }

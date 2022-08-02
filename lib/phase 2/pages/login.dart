@@ -17,6 +17,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
+  bool _obscureText = true;
 
   var email = "";
   var password = "";
@@ -35,21 +36,35 @@ class _LoginPageState extends State<LoginPage> {
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            backgroundColor: Colors.orangeAccent,
+          SnackBar(
+            backgroundColor: Colors.green,
             content: Text(
-              "No User Found for that Email",
-              style: TextStyle(fontSize: 18.0, color: Colors.black),
+              "Account for this email doesn't exist",
+              style: GoogleFonts.lato(
+                textStyle: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+              textAlign: TextAlign.center,
+              textScaleFactor: 1,
             ),
           ),
         );
       } else if (e.code == 'wrong-password') {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(
-            backgroundColor: Colors.orangeAccent,
+          SnackBar(
+            backgroundColor: Colors.green,
             content: Text(
-              "Wrong Password Provided by User",
-              style: TextStyle(fontSize: 18.0, color: Colors.black),
+              "Incorrect Password. Please try again.",
+              style: GoogleFonts.lato(
+                textStyle: const TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
+              ),
+              textAlign: TextAlign.center,
+              textScaleFactor: 1,
             ),
           ),
         );
@@ -153,12 +168,16 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget buildPass() {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 5),
+      margin: const EdgeInsets.symmetric(vertical: 5.0),
       child: TextFormField(
+        obscureText: _obscureText,
         autofocus: false,
         decoration: InputDecoration(
           labelText: 'Password: ',
-          labelStyle: const TextStyle(fontSize: 18, color: Colors.green),
+          labelStyle: const TextStyle(
+            color: Colors.green,
+            fontSize: 18,
+          ),
           enabledBorder: OutlineInputBorder(
             borderSide: const BorderSide(width: 2, color: Colors.green),
             borderRadius: BorderRadius.circular(30),
@@ -171,7 +190,17 @@ class _LoginPageState extends State<LoginPage> {
             borderSide: const BorderSide(width: 2, color: Colors.green),
             borderRadius: BorderRadius.circular(30),
           ),
-          errorStyle: const TextStyle(color: Colors.redAccent, fontSize: 15),
+          errorStyle: const TextStyle(color: Colors.redAccent, fontSize: 14),
+          suffixIcon: IconButton(
+              icon: Icon(
+                !_obscureText ? Icons.visibility : Icons.visibility_off,
+                color: Theme.of(context).primaryColorDark,
+              ),
+              onPressed: () {
+                setState(() {
+                  _obscureText = !_obscureText;
+                });
+              }),
         ),
         controller: passwordController,
         validator: (value) {

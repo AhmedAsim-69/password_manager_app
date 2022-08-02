@@ -37,7 +37,9 @@ class MyApp extends StatelessWidget {
           theme: ThemeData(
             primarySwatch: Colors.green,
           ),
-          home: const Homepage('email'),
+          home: const LoginPage(
+            title: 'title',
+          ),
         );
       },
     );

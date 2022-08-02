@@ -2,13 +2,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:password_manager_app/phase%202/pages/add_pass.dart';
-import 'package:password_manager_app/phase%202/pages/login.dart';
 import 'package:password_manager_app/phase%202/pages/password_generator.dart';
 
 import 'dashboard.dart';
+import 'login.dart';
 
 class Homepage extends StatefulWidget {
-  const Homepage(String email, {Key? key}) : super(key: key);
+  const Homepage({Key? key}) : super(key: key);
 
   @override
   State<Homepage> createState() => _HomepageState();
@@ -30,30 +30,30 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: Row(
-      //     mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      //     children: [
-      //       const Text("Welcome User"),
-      //       ElevatedButton(
-      //         onPressed: () async => {
-      //           await FirebaseAuth.instance.signOut(),
-      //           await signOut123(),
-      //           Navigator.pushAndRemoveUntil(
-      //               context,
-      //               MaterialPageRoute(
-      //                 builder: (context) => const LoginPage(
-      //                   title: 'title',
-      //                 ),
-      //               ),
-      //               (route) => false)
-      //         },
-      //         style: ElevatedButton.styleFrom(primary: Colors.blueGrey),
-      //         child: const Text('Logout'),
-      //       )
-      //     ],
-      //   ),
-      // ),
+      appBar: AppBar(
+        title: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            const Text("Welcome User"),
+            ElevatedButton(
+              onPressed: () async => {
+                await FirebaseAuth.instance.signOut(),
+                await signOut123(),
+                Navigator.pushAndRemoveUntil(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LoginPage(
+                        title: 'title',
+                      ),
+                    ),
+                    (route) => false)
+              },
+              style: ElevatedButton.styleFrom(primary: Colors.blueGrey),
+              child: const Text('Logout'),
+            )
+          ],
+        ),
+      ),
       body: widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Theme.of(context).primaryColor,

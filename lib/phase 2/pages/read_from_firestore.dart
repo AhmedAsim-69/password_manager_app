@@ -14,18 +14,11 @@ class ReadFromFirestore extends StatefulWidget {
 
 class _ReadFromFirestoreState extends State<ReadFromFirestore> {
   final user = FirebaseAuth.instance.currentUser;
-  TextEditingController _searchController = TextEditingController();
-//TODO Make sure to provide your own Collection instead of 'all_Notes'
-  CollectionReference allNoteCollection =
-      FirebaseFirestore.instance.collection('users123');
-  List<DocumentSnapshot> documents = [];
-
-  String searchText = '';
   @override
   Widget build(BuildContext context) => Scaffold(
-        appBar: AppBar(
-          title: const Text('All Users'),
-        ),
+        // appBar: AppBar(
+        //   title: const Text('All Users'),
+        // ),
         body: StreamBuilder<List<User>>(
           stream: readUsers(),
           builder: (context, snapshot) {
@@ -45,195 +38,180 @@ class _ReadFromFirestoreState extends State<ReadFromFirestore> {
           },
         ),
       );
-  Widget buildUser(User user) => Expanded(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Divider(color: Colors.black),
-            Row(
-              children: [
-                Text(
-                  'App Name: ${user.appName}',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).primaryColor,
-                    fontSize: 22,
-                  ),
+  Widget buildUser(User user) => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Divider(color: Colors.black),
+          Row(
+            children: [
+              Text(
+                'App Name: ${user.appName}',
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Theme.of(context).primaryColor,
+                  fontSize: 22,
                 ),
-                const Spacer(),
-                IconButton(
-                  icon: const Icon(Icons.copy),
-                  onPressed: () {
-                    final copypassword = ClipboardData(text: user.appName);
-                    Clipboard.setData(copypassword);
+              ),
+              const Spacer(),
+              IconButton(
+                icon: const Icon(Icons.copy),
+                onPressed: () {
+                  final copypassword = ClipboardData(text: user.appName);
+                  Clipboard.setData(copypassword);
 
-                    SnackBar snackBar = SnackBar(
-                      content: Text(
-                        'App Name copied to clipboard',
-                        style: GoogleFonts.lato(
-                          textStyle: const TextStyle(
-                            fontSize: 16,
-                          ),
+                  SnackBar snackBar = SnackBar(
+                    content: Text(
+                      'App Name copied to clipboard',
+                      style: GoogleFonts.lato(
+                        textStyle: const TextStyle(
+                          fontSize: 16,
                         ),
                       ),
-                      backgroundColor: Colors.green,
-                    );
-                    ScaffoldMessenger.of(context)
-                      ..removeCurrentSnackBar()
-                      ..showSnackBar(snackBar);
-                  },
+                    ),
+                    backgroundColor: Colors.green,
+                  );
+                  ScaffoldMessenger.of(context)
+                    ..removeCurrentSnackBar()
+                    ..showSnackBar(snackBar);
+                },
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Text(
+                'Email: ${user.email}',
+                style: const TextStyle(
+                  fontSize: 14,
+                  height: 1.5,
+                  fontStyle: FontStyle.italic,
                 ),
-              ],
-            ),
-            Row(
-              children: [
-                Text(
-                  'Email: ${user.email}',
-                  style: const TextStyle(
-                    fontSize: 14,
-                    height: 1.5,
-                    fontStyle: FontStyle.italic,
-                  ),
-                ),
-                const Spacer(),
-                IconButton(
-                  icon: const Icon(Icons.copy),
-                  onPressed: () {
-                    final copypassword = ClipboardData(text: user.email);
-                    Clipboard.setData(copypassword);
+              ),
+              const Spacer(),
+              IconButton(
+                icon: const Icon(Icons.copy),
+                onPressed: () {
+                  final copypassword = ClipboardData(text: user.email);
+                  Clipboard.setData(copypassword);
 
-                    SnackBar snackBar = SnackBar(
-                      content: Text(
-                        'Email copied to clipboard',
-                        style: GoogleFonts.lato(
-                          textStyle: const TextStyle(
-                            fontSize: 16,
-                          ),
+                  SnackBar snackBar = SnackBar(
+                    content: Text(
+                      'Email copied to clipboard',
+                      style: GoogleFonts.lato(
+                        textStyle: const TextStyle(
+                          fontSize: 16,
                         ),
                       ),
-                      backgroundColor: Colors.green,
-                    );
-                    ScaffoldMessenger.of(context)
-                      ..removeCurrentSnackBar()
-                      ..showSnackBar(snackBar);
-                  },
+                    ),
+                    backgroundColor: Colors.green,
+                  );
+                  ScaffoldMessenger.of(context)
+                    ..removeCurrentSnackBar()
+                    ..showSnackBar(snackBar);
+                },
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Text(
+                'Password: ${user.password}',
+                style: const TextStyle(
+                  fontSize: 14,
+                  height: 1.5,
+                  fontStyle: FontStyle.italic,
                 ),
-              ],
-            ),
-            Row(
-              children: [
-                Text(
-                  'Password: ${user.password}',
-                  style: const TextStyle(
-                    fontSize: 14,
-                    height: 1.5,
-                    fontStyle: FontStyle.italic,
-                  ),
-                ),
-                const Spacer(),
-                IconButton(
-                  icon: const Icon(Icons.copy),
-                  onPressed: () {
-                    final copypassword = ClipboardData(text: user.password);
-                    Clipboard.setData(copypassword);
+              ),
+              const Spacer(),
+              IconButton(
+                icon: const Icon(Icons.copy),
+                onPressed: () {
+                  final copypassword = ClipboardData(text: user.password);
+                  Clipboard.setData(copypassword);
 
-                    SnackBar snackBar = SnackBar(
-                      content: Text(
-                        'Password copied to clipboard',
-                        style: GoogleFonts.lato(
-                          textStyle: const TextStyle(
-                            fontSize: 16,
-                          ),
+                  SnackBar snackBar = SnackBar(
+                    content: Text(
+                      'Password copied to clipboard',
+                      style: GoogleFonts.lato(
+                        textStyle: const TextStyle(
+                          fontSize: 16,
                         ),
                       ),
-                      backgroundColor: Colors.green,
-                    );
-                    ScaffoldMessenger.of(context)
-                      ..removeCurrentSnackBar()
-                      ..showSnackBar(snackBar);
-                  },
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
+                    ),
+                    backgroundColor: Colors.green,
+                  );
+                  ScaffoldMessenger.of(context)
+                    ..removeCurrentSnackBar()
+                    ..showSnackBar(snackBar);
+                },
+              ),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
 // Press this button to edit a single product
-                IconButton(icon: const Icon(Icons.edit), onPressed: () {}),
-                const SizedBox(
-                  width: 200,
-                ),
-                // => _update(documentSnapshot)),
-                IconButton(
-                    icon: const Icon(Icons.delete),
-                    onPressed: () {
-                      showDialog(
-                        context: context,
-                        builder: (ctx) => AlertDialog(
-                          title: const Text("Delete Password!"),
-                          content: const Text(
-                              "Are you sure you want to delete this Password?"),
-                          actions: <Widget>[
-                            TextButton(
-                              onPressed: () {
-                                final docUser = FirebaseFirestore.instance
-                                    .collection('users123')
-                                    .doc(user.id);
+              IconButton(icon: const Icon(Icons.edit), onPressed: () {}),
+              const SizedBox(
+                width: 200,
+              ),
+              // => _update(documentSnapshot)),
+              IconButton(
+                  icon: const Icon(Icons.delete),
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (ctx) => AlertDialog(
+                        title: const Text("Delete Password!"),
+                        content: const Text(
+                            "Are you sure you want to delete this Password?"),
+                        actions: <Widget>[
+                          TextButton(
+                            onPressed: () {
+                              final docUser = FirebaseFirestore.instance
+                                  .collection(
+                                      FirebaseAuth.instance.currentUser!.email!)
+                                  .doc(user.id);
 
-                                docUser.delete();
-                                Navigator.pop(context, true);
-                              },
-                              child: Container(
-                                padding: const EdgeInsets.all(14),
-                                child: const Text(
-                                  "Delete",
-                                  style: TextStyle(color: Colors.red),
-                                ),
+                              docUser.delete();
+                              Navigator.pop(context, true);
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.all(14),
+                              child: const Text(
+                                "Delete",
+                                style: TextStyle(color: Colors.red),
                               ),
                             ),
-                            TextButton(
-                              onPressed: () {
-                                Navigator.pop(context, true);
-                              },
-                              child: Container(
-                                padding: const EdgeInsets.all(14),
-                                child: const Text(
-                                  "Cancel",
-                                  style: TextStyle(color: Colors.green),
-                                ),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              Navigator.pop(context, true);
+                            },
+                            child: Container(
+                              padding: const EdgeInsets.all(14),
+                              child: const Text(
+                                "Cancel",
+                                style: TextStyle(color: Colors.green),
                               ),
                             ),
-                          ],
-                        ),
-                      );
-                    }),
-              ],
-            ),
-            const Divider(color: Colors.black)
-          ],
-        ),
+                          ),
+                        ],
+                      ),
+                    );
+                  }),
+            ],
+          ),
+          const Divider(color: Colors.black)
+        ],
       );
 
   Stream<List<User>> readUsers() => FirebaseFirestore.instance
-      .collection('users123')
+      .collection(FirebaseAuth.instance.currentUser!.email!)
       .snapshots()
       .map((snapshot) =>
           snapshot.docs.map((doc) => User.fromJson(doc.data())).toList());
-
-  final editingController = TextEditingController();
-
-  Widget buildSearch() {
-    return TextField(
-      controller: editingController,
-      decoration: const InputDecoration(
-          labelText: "Search",
-          hintText: "Search",
-          prefixIcon: Icon(Icons.search),
-          border: OutlineInputBorder(
-              borderRadius: BorderRadius.all(Radius.circular(25.0)))),
-    );
-  }
 }
 
 class User {

@@ -18,14 +18,14 @@ bool lower = true;
 int length = 8;
 double value = 8;
 
-class NewPassaDial extends StatefulWidget {
-  const NewPassaDial({Key? key}) : super(key: key);
+class NewEditPassDial extends StatefulWidget {
+  const NewEditPassDial({Key? key}) : super(key: key);
 
   @override
-  State<NewPassaDial> createState() => _NewPassaDialState();
+  State<NewEditPassDial> createState() => _NewEditPassDialState();
 }
 
-class _NewPassaDialState extends State<NewPassaDial> {
+class _NewEditPassDialState extends State<NewEditPassDial> {
   @override
   Widget build(BuildContext context) => SingleChildScrollView(
         child: Column(
@@ -52,7 +52,7 @@ class _NewPassaDialState extends State<NewPassaDial> {
         maxLines: 1,
         validator: (title) {
           if (title!.isEmpty) {
-            return 'The title cannot be empty';
+            return 'The App Name cannot be empty';
           }
           return null;
         },
@@ -122,19 +122,28 @@ class _NewPassaDialState extends State<NewPassaDial> {
             foregroundColor: MaterialStateProperty.all(Colors.white),
           ),
           onPressed: () {
-            final user = User(
-                appName: namectrl.text,
-                email: emailctrl.text,
-                password: passctrl.text);
+            final docUser = FirebaseFirestore.instance
+                .collection(FirebaseAuth.instance.currentUser!.email!)
+                .doc();
 
-            savePassToFirestore(user);
-            Navigator.pop(context, true);
-            namectrl.clear();
-            emailctrl.clear();
-            passctrl.clear();
+            docUser.update(
+              {
+                'appName': 'Faceboooook',
+              },
+            );
+            // final user = User(
+            //     appName: namectrl.text,
+            //     email: emailctrl.text,
+            //     password: passctrl.text);
+
+            // updatePassToFirestore(user);
+            // Navigator.pop(context, true);
+            // namectrl.clear();
+            // emailctrl.clear();
+            // passctrl.clear();
           },
           child: Text(
-            'Save Password',
+            'Save Updated Password',
             style: GoogleFonts.lato(
               textStyle: const TextStyle(
                 fontWeight: FontWeight.bold,
@@ -147,14 +156,8 @@ class _NewPassaDialState extends State<NewPassaDial> {
         ),
       );
 
-  Future savePassToFirestore(User user) async {
-    final docUser = FirebaseFirestore.instance
-        .collection(FirebaseAuth.instance.currentUser!.email!)
-        .doc();
-    user.id = docUser.id;
-
-    final json = user.toJson();
-    await docUser.set(json);
+  Future updatePassToFirestore(User user) async {
+    // return await
   }
 
   String generatePassword(final length) {

@@ -28,7 +28,7 @@ class _LoginPageState extends State<LoginPage> {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => Homepage(email),
+            builder: (context) => const Homepage(),
           ),
         );
       }
@@ -44,7 +44,6 @@ class _LoginPageState extends State<LoginPage> {
           ),
         );
       } else if (e.code == 'wrong-password') {
-        print("Wrong Password Provided by User");
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
             backgroundColor: Colors.orangeAccent,

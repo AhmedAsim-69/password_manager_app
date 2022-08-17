@@ -4,13 +4,13 @@ A new Flutter project.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+This is a password generating/managing app. The app has a simple yet sleek interface.
+This is a multi-user app where users can login through their email or with their already existing google account.
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+On Startup, user is greeted with login screen and upon logging in, user is welcomed to dashboard where all of his saved passwords are stored and displayed.
+Everything is stored on cloud firestore and loaded when user is logged in. User can also generate random passwords of length ranging 8-50 which can include lowercase, uppercase, numbers and special characters upon checkbox selection.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+The user can copy password and user anywhere he wants. 
+User can also save passwords, app name and email within the app and keep record of it.
+

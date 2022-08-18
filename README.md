@@ -1,11 +1,10 @@
 # Password Manager
 
-Flutter application for saving and generating the random password.
+Multi-User Flutter application for saving and generating the random password.
 
 ## Use Cases and description
 
 #### Password Generation - Title ####
-Multi-User Application should generate the random password with defined range and store it.
 
 - Multi-User Application
 - Email Google Signup

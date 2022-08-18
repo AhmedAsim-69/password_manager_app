@@ -1,3 +1,46 @@
+# Password Manager
+
+Flutter application for saving and generating the random password.
+
+## User Flow Diagram and Description
+
+How to make user flow diagram view this video [this](https://www.youtube.com/watch?v=cvYhuowazh0) video
+
+Use the [draw.io](https://draw.io/) to make the user flow diagram and add the description.
+
+## Use Cases and description
+
+The use case should be defined like this:
+
+#### Password Generation - Title ####
+Application should generate the random password with defined range. - Description
+
+Multi-User Application
+Email Google Signup
+Email/Google Login
+Save Passwords for Apps
+Edit Passwords
+Delete Passwords
+Copy App name/Email(Username)/Password
+Generate Random Password
+
+**Use case can be login, search, view etc.**
+
+## Video defining the use cases one by one
+
+[![Watch the video](https://img.youtube.com/vi/nTQUwghvy5Q/default.jpg)](https://youtu.be/nTQUwghvy5Q)
+
+
+
+
+
+
+
+
+
+
+
+
 # password_manager_app
 
 A new Flutter project.

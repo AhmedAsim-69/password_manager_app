@@ -7,15 +7,15 @@ Flutter application for saving and generating the random password.
 #### Password Generation - Title ####
 Multi-User Application should generate the random password with defined range and store it.
 
--Multi-User Application
--Email Google Signup
--Email/Google Login
--Save Passwords for Apps
--Edit Passwords
--Delete Passwords
--Copy App name/Email(Username)/Password
--Generate Random Password 
--Copy Random Password
+- Multi-User Application
+- Email Google Signup
+- Email/Google Login
+- Save Passwords for Apps
+- Edit Passwords
+- Delete Passwords
+- Copy App name/Email(Username)/Password
+- Generate Random Password 
+- Copy Random Password
 
 
 **Use case can be login, search, view etc.**

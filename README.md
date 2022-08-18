@@ -21,4 +21,4 @@ Multi-User Flutter application for saving and generating the random password.
 
 ## Video defining the use cases one by one
 
-[![Watch the video](https://img.youtube.com/vi/nTQUwghvy5Q/default.jpg)](https://youtu.be/nTQUwghvy5Q)
+[![Watch the video]](https://youtu.be/E2Ak2vWGgiI)

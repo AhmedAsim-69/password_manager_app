@@ -17,8 +17,6 @@ Multi-User Flutter application for saving and generating the random password.
 - Copy Random Password
 
 
-**Use case can be login, search, view etc.**
-
 ## Video defining the use cases one by one
 
 [![Watch the video]](https://youtu.be/E2Ak2vWGgiI)

@@ -1,10 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:google_fonts/google_fonts.dart';
-// import 'package:password_manager_app/phase%201/main.dart';
-import 'package:password_manager_app/phase%202/pages/login.dart';
 
+import 'package:password_manager_app/phase%202/pages/login.dart';
 import 'auth_service.dart';
 
 class Signup extends StatefulWidget {
@@ -278,7 +278,6 @@ class _SignupState extends State<Signup> {
       children: [
         ElevatedButton(
           onPressed: () {
-            // Validate returns true if the form is valid, otherwise false.
             if (_formKey.currentState!.validate()) {
               setState(() {
                 email = emailController.text;
@@ -325,22 +324,6 @@ class _SignupState extends State<Signup> {
       Buttons.Google,
       onPressed: () {
         AuthService().signInWithGoogle();
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            backgroundColor: Colors.green,
-            content: Text(
-              "Logged in successfully",
-              style: GoogleFonts.lato(
-                textStyle: const TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: Colors.black,
-                ),
-              ),
-              textAlign: TextAlign.center,
-              textScaleFactor: 1,
-            ),
-          ),
-        );
         Navigator.push(
           context,
           MaterialPageRoute(

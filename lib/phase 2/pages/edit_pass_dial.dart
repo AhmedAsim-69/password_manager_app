@@ -1,9 +1,8 @@
-// import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
+
 import 'dart:math';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -124,7 +123,6 @@ class _NewEditPassDialState extends State<NewEditPassDial> {
             final docUser = FirebaseFirestore.instance
                 .collection(FirebaseAuth.instance.currentUser!.email!)
                 .doc();
-            // final users = snapshot.data!
 
             docUser.update(
               {
@@ -188,8 +186,7 @@ class _NewEditPassDialState extends State<NewEditPassDial> {
             upper = newValue!;
           });
         },
-        controlAffinity:
-            ListTileControlAffinity.leading, //  <-- leading Checkbox
+        controlAffinity: ListTileControlAffinity.leading,
       ),
     );
   }
@@ -212,8 +209,7 @@ class _NewEditPassDialState extends State<NewEditPassDial> {
             lower = newValue!;
           });
         },
-        controlAffinity:
-            ListTileControlAffinity.leading, //  <-- leading Checkbox
+        controlAffinity: ListTileControlAffinity.leading,
       ),
     );
   }
@@ -236,8 +232,7 @@ class _NewEditPassDialState extends State<NewEditPassDial> {
             numbers = newValue!;
           });
         },
-        controlAffinity:
-            ListTileControlAffinity.leading, //  <-- leading Checkbox
+        controlAffinity: ListTileControlAffinity.leading,
       ),
     );
   }
@@ -260,8 +255,7 @@ class _NewEditPassDialState extends State<NewEditPassDial> {
             spclch = newValue!;
           });
         },
-        controlAffinity:
-            ListTileControlAffinity.leading, //  <-- leading Checkbox
+        controlAffinity: ListTileControlAffinity.leading,
       ),
     );
   }
@@ -306,11 +300,6 @@ class User {
         'email': email,
         'password': password,
       };
-  // Stream<List<User>> readusers() => FirebaseFirestore.instance
-  //     .collection(FirebaseAuth.instance.currentUser!.email!)
-  //     .snapshots()
-  //     .map((snapshot) =>
-  //         snapshot.docs.map((doc) => User.fromuserdata(doc.data())).toList());
 
   Stream<List<User>> readUsers() => FirebaseFirestore.instance
       .collection(FirebaseAuth.instance.currentUser!.email!)

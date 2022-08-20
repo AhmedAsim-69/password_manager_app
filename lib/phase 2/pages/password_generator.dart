@@ -1,5 +1,6 @@
-import 'dart:math';
 import 'package:flutter/material.dart';
+
+import 'dart:math';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -186,8 +187,7 @@ class _GeneratePassState extends State<GeneratePass> {
             upper = newValue!;
           });
         },
-        controlAffinity:
-            ListTileControlAffinity.leading, //  <-- leading Checkbox
+        controlAffinity: ListTileControlAffinity.leading,
       ),
     );
   }
@@ -211,8 +211,7 @@ class _GeneratePassState extends State<GeneratePass> {
             lower = newValue!;
           });
         },
-        controlAffinity:
-            ListTileControlAffinity.leading, //  <-- leading Checkbox
+        controlAffinity: ListTileControlAffinity.leading,
       ),
     );
   }
@@ -236,8 +235,7 @@ class _GeneratePassState extends State<GeneratePass> {
             numbers = newValue!;
           });
         },
-        controlAffinity:
-            ListTileControlAffinity.leading, //  <-- leading Checkbox
+        controlAffinity: ListTileControlAffinity.leading,
       ),
     );
   }
@@ -261,8 +259,7 @@ class _GeneratePassState extends State<GeneratePass> {
             spclch = newValue!;
           });
         },
-        controlAffinity:
-            ListTileControlAffinity.leading, //  <-- leading Checkbox
+        controlAffinity: ListTileControlAffinity.leading,
       ),
     );
   }

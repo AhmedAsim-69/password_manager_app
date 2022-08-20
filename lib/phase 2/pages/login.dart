@@ -1,12 +1,14 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'forgot_pass.dart';
+import 'auth_service.dart';
 import 'package:password_manager_app/phase 2/pages/signup.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
 import 'package:password_manager_app/phase%202/pages/auth_service.dart';
 import 'package:password_manager_app/phase%202/pages/homepage.dart';
-import 'forgot_pass.dart';
-import 'auth_service.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key, required String title}) : super(key: key);
@@ -228,12 +230,6 @@ class _LoginPageState extends State<LoginPage> {
                 });
                 userLogin();
               }
-              // Navigator.push(
-              //   context,
-              //   MaterialPageRoute(
-              //     builder: (context) => const Homepage(),
-              //   ),
-              // );
             },
             child: const Text(
               'Login',

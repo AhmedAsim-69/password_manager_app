@@ -1,11 +1,12 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
-import 'package:password_manager_app/phase%202/pages/add_pass.dart';
-import 'package:password_manager_app/phase%202/pages/password_generator.dart';
+import 'package:password_manager_app/phase%202/pages/login.dart';
 
 import 'dashboard.dart';
-import 'login.dart';
+import 'package:password_manager_app/phase%202/pages/add_pass.dart';
+import 'package:password_manager_app/phase%202/pages/password_generator.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({Key? key}) : super(key: key);
@@ -37,7 +38,6 @@ class _HomepageState extends State<Homepage> {
             const Text("Welcome User"),
             ElevatedButton(
               onPressed: () async => {
-                // await FirebaseAuth.instance.signOut(),
                 await signOut123(),
                 Navigator.pushAndRemoveUntil(
                     context,

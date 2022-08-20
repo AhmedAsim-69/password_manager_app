@@ -1,8 +1,10 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
+
 import 'package:password_manager_app/phase%202/pages/edit_pass.dart';
 
 class ReadFromFirestore extends StatefulWidget {
@@ -14,15 +16,11 @@ class ReadFromFirestore extends StatefulWidget {
 
 class _ReadFromFirestoreState extends State<ReadFromFirestore> {
   final user = FirebaseAuth.instance.currentUser;
-  final _formKey = GlobalKey<FormState>();
   String appname = '';
   String email = '';
   String pass = '';
   @override
   Widget build(BuildContext context) => Scaffold(
-        // appBar: AppBar(
-        //   title: const Text('All Users'),
-        // ),
         body: StreamBuilder<List<User>>(
           stream: readUsers(),
           builder: (context, snapshot) {
@@ -123,9 +121,9 @@ class _ReadFromFirestoreState extends State<ReadFromFirestore> {
           ),
           Row(
             children: [
-              Text(
-                'Password: ${user.password}',
-                style: const TextStyle(
+              const Text(
+                "Password: **********",
+                style: TextStyle(
                   fontSize: 14,
                   height: 1.5,
                   fontStyle: FontStyle.italic,
@@ -163,10 +161,13 @@ class _ReadFromFirestoreState extends State<ReadFromFirestore> {
               IconButton(
                   icon: const Icon(Icons.edit),
                   onPressed: () {
-                    final userid = user.id;
                     showDialog(
                       context: context,
-                      builder: (ctx) => EditPass(userid: user.id),
+                      builder: (ctx) => EditPass(
+                          userid: user.id,
+                          userapp: user.appName,
+                          useremail: user.email,
+                          userpass: user.password),
                     );
                   }),
               const SizedBox(

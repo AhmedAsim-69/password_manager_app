@@ -1,29 +1,35 @@
-// import 'package:firebase_auth/firebase_auth.dart';
-// import 'package:firebase_core/firebase_core.dart';
-import 'dart:math';
+import 'package:flutter/material.dart';
 
+import 'dart:math';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-// import 'package:password_manager_app/phase%202/pages/edit_pass_dial.dart';
 
 class EditPass extends StatefulWidget {
   final userid;
-  const EditPass({Key? key, required this.userid}) : super(key: key);
+  final String userapp;
+  final String useremail;
+  final String userpass;
+  const EditPass(
+      {Key? key,
+      required this.userid,
+      required this.userapp,
+      required this.useremail,
+      required this.userpass})
+      : super(key: key);
 
   @override
-  _EditPassState createState() => _EditPassState();
+  EditPassState createState() => EditPassState();
 }
 
-class _EditPassState extends State<EditPass> {
+class EditPassState extends State<EditPass> {
   final _formKey = GlobalKey<FormState>();
   String appname = '';
   String email = '';
   String pass = '';
-  final namectrl = TextEditingController();
-  final emailctrl = TextEditingController();
-  final passctrl = TextEditingController();
+  late final namectrl = TextEditingController(text: widget.userapp);
+  late final emailctrl = TextEditingController(text: widget.useremail);
+  late final passctrl = TextEditingController(text: widget.userpass);
   bool spclch = true;
   bool numbers = true;
   bool upper = true;
@@ -32,27 +38,29 @@ class _EditPassState extends State<EditPass> {
   double value = 8;
 
   @override
-  Widget build(BuildContext context) => AlertDialog(
-        content: Form(
-          key: _formKey,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Edit a Saved Password",
-                style: GoogleFonts.lato(
-                  textStyle: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black,
+  Widget build(BuildContext context) => SingleChildScrollView(
+        child: AlertDialog(
+          content: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Edit a Saved Password",
+                  style: GoogleFonts.lato(
+                    textStyle: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      color: Colors.black,
+                    ),
                   ),
+                  textAlign: TextAlign.center,
+                  textScaleFactor: 1,
                 ),
-                textAlign: TextAlign.center,
-                textScaleFactor: 1,
-              ),
-              const SizedBox(height: 8),
-              newEditPassDial(context),
-            ],
+                const SizedBox(height: 8),
+                newEditPassDial(context),
+              ],
+            ),
           ),
         ),
       );
@@ -155,7 +163,6 @@ class _EditPassState extends State<EditPass> {
             final docUser = FirebaseFirestore.instance
                 .collection(FirebaseAuth.instance.currentUser!.email!)
                 .doc(widget.userid);
-            // final users = snapshot.data!
 
             docUser.update(
               {
@@ -164,6 +171,7 @@ class _EditPassState extends State<EditPass> {
                 'password': passctrl.text,
               },
             );
+            Navigator.pop(context, true);
             namectrl.clear();
             emailctrl.clear();
             passctrl.clear();
@@ -219,8 +227,7 @@ class _EditPassState extends State<EditPass> {
             upper = newValue!;
           });
         },
-        controlAffinity:
-            ListTileControlAffinity.leading, //  <-- leading Checkbox
+        controlAffinity: ListTileControlAffinity.leading,
       ),
     );
   }
@@ -243,8 +250,7 @@ class _EditPassState extends State<EditPass> {
             lower = newValue!;
           });
         },
-        controlAffinity:
-            ListTileControlAffinity.leading, //  <-- leading Checkbox
+        controlAffinity: ListTileControlAffinity.leading,
       ),
     );
   }
@@ -267,8 +273,7 @@ class _EditPassState extends State<EditPass> {
             numbers = newValue!;
           });
         },
-        controlAffinity:
-            ListTileControlAffinity.leading, //  <-- leading Checkbox
+        controlAffinity: ListTileControlAffinity.leading,
       ),
     );
   }
@@ -291,8 +296,7 @@ class _EditPassState extends State<EditPass> {
             spclch = newValue!;
           });
         },
-        controlAffinity:
-            ListTileControlAffinity.leading, //  <-- leading Checkbox
+        controlAffinity: ListTileControlAffinity.leading,
       ),
     );
   }
@@ -337,11 +341,6 @@ class User {
         'email': email,
         'password': password,
       };
-  // Stream<List<User>> readusers() => FirebaseFirestore.instance
-  //     .collection(FirebaseAuth.instance.currentUser!.email!)
-  //     .snapshots()
-  //     .map((snapshot) =>
-  //         snapshot.docs.map((doc) => User.fromuserdata(doc.data())).toList());
 
   Stream<List<User>> readUsers() => FirebaseFirestore.instance
       .collection(FirebaseAuth.instance.currentUser!.email!)

@@ -34,4 +34,4 @@ User can easily copy the random generated password by clicking the copy button r
 
 ## Video defining the use cases one by one
 
-[![Watch the video](https://i.ytimg.com/vi/mx1V0f9YLrE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG\u0026rs=AOn4CLBpNuD1C8iT_vqWUPUA2GJUH3mTVg")](https://youtu.be/sfepF_aZ7KQ)
+[![Watch the video](https://i.ytimg.com/vi/sfepF_aZ7KQ/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG\u0026rs=AOn4CLD3-Kx92nTz_T-1PNQ--ljYgv7kcA)](https://youtu.be/sfepF_aZ7KQ)

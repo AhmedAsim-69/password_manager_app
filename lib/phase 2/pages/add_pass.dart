@@ -7,10 +7,10 @@ class AddPass extends StatefulWidget {
   const AddPass({Key? key}) : super(key: key);
 
   @override
-  _AddPassState createState() => _AddPassState();
+  AddPassState createState() => AddPassState();
 }
 
-class _AddPassState extends State<AddPass> {
+class AddPassState extends State<AddPass> {
   final _formKey = GlobalKey<FormState>();
   String appname = '';
   String email = '';

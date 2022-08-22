@@ -6,7 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class EditPass extends StatefulWidget {
-  final userid;
+  final String userid;
   final String userapp;
   final String useremail;
   final String userpass;

@@ -90,8 +90,8 @@ class _HomepageState extends State<Homepage> {
 
   Future<void> signOut123() async {
     await FirebaseAuth.instance.signOut();
-    GoogleSignIn _googleSignIn = GoogleSignIn();
-    await _googleSignIn.signOut();
+    GoogleSignIn googleSignIn = GoogleSignIn();
+    await googleSignIn.signOut();
   }
 
   Widget buildSearch() {

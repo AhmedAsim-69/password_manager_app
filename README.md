@@ -16,6 +16,8 @@ The user can use both his email or Google account to Signup to the application.
 The user can use both his email or Google account to Login to the application. 
 #### - Save Passwords for Apps ####
 The user can save pasword for any app he desires. The details would include App Name, username/email and the password.
+#### - Read saved Passwords for Apps ####
+The user is able to read his saved password credentials.
 #### - Edit Passwords ####
 The user can edit any of his saved passwords by clicking the edit button below each of the saved pasword. He can edit either of the fields or all fields.
 #### - Random Password Generation  ####

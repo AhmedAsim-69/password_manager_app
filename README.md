@@ -34,4 +34,4 @@ User can easily copy the random generated password by clicking the copy button r
 
 ## Video defining the use cases one by one
 
-[![Watch the video](https://user-images.githubusercontent.com/108008682/185865313-9976f508-aafc-41f7-b05b-bc59b4241442.png)](https://youtu.be/sfepF_aZ7KQ)
+[![Watch the video](ttps://i.ytimg.com/vi/mx1V0f9YLrE/hqdefault.jpg?sqp=-oaymwEbCKgBEF5IVfKriqkDDggBFQAAiEIYAXABwAEG\u0026rs=AOn4CLBpNuD1C8iT_vqWUPUA2GJUH3mTVg")](https://youtu.be/sfepF_aZ7KQ)

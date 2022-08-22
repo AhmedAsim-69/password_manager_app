@@ -3,8 +3,7 @@
 Multi-User Flutter application for saving and generating the random password.
 
 ## User Flow Diagram and Description
-![drawwwwww drawio (4)](![drawwwwww drawio (4)](https://user-images.githubusercontent.com/108008682/185865177-267272e9-b570-4ea7-9a18-cee51f70f864.png)
-)
+(![drawwwwww drawio (4)](https://user-images.githubusercontent.com/108008682/185865177-267272e9-b570-4ea7-9a18-cee51f70f864.png))
 
 User lands on the login page when he opens the app. From there he can either create a new account or he can login to his existing account. After logging in, user wil be welcomed to the dashboard where all of his saved passwords will be displayed. User is able to either edit/update the passwords or delete the saved passwords, or create new ones. From Dashboard, user can also navigate to random password generator screen where he can generate random poasswords. User can also log out by clicking the logout button in the appbar.
 ## Use Cases and Description
@@ -35,4 +34,5 @@ User can easily copy the random generated password by clicking the copy button r
 
 ## Video defining the use cases one by one
 
-[![Watch the video](https://img.youtube.com/vi/nTQUwghvy5Q/default.jpg)](https://youtu.be/sfepF_aZ7KQ)
+[![Watch the video](![Screenshot_1660736990](https://user-images.githubusercontent.com/108008682/185865313-9976f508-aafc-41f7-b05b-bc59b4241442.png)
+)](https://youtu.be/sfepF_aZ7KQ)

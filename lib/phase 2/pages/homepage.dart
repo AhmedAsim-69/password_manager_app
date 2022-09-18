@@ -39,16 +39,18 @@ class _HomepageState extends State<Homepage> {
             ElevatedButton(
               onPressed: () async => {
                 await signOut123(),
-                Navigator.pushAndRemoveUntil(
+                if (mounted)
+                  Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(
                       builder: (context) => const LoginPage(
                         title: 'title',
                       ),
                     ),
-                    (route) => false)
+                    (route) => false,
+                  )
               },
-              style: ElevatedButton.styleFrom(primary: Colors.blueGrey),
+              style: ElevatedButton.styleFrom(backgroundColor: Colors.blueGrey),
               child: const Text('Logout'),
             )
           ],

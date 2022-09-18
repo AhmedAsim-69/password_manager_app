@@ -3,11 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'forgot_pass.dart';
-import 'auth_service.dart';
+import 'package:password_manager_app/phase%202/pages/auth_service.dart';
+import 'package:password_manager_app/phase%202/pages/forgot_pass.dart';
 import 'package:password_manager_app/phase 2/pages/signup.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
-import 'package:password_manager_app/phase%202/pages/auth_service.dart';
 import 'package:password_manager_app/phase%202/pages/homepage.dart';
 
 class LoginPage extends StatefulWidget {
